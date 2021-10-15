@@ -37,7 +37,7 @@ export const CadastroUser = () => {
           <FormControl.HelperText>
             Sua senha deve conter 6 caracteres.
           </FormControl.HelperText>
-          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('ListarContato')}>Salvar</Button>
+          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('Login')}>Salvar</Button>
         </Stack>
       </FormControl>
     </Box>

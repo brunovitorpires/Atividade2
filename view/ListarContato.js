@@ -108,6 +108,7 @@ export const ListarContato = () => {
         keyExtractor={(item) => item.id}
       />
             <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('CadastroContato')}>Adicionar</Button>
+
     </Box>
    
   )
