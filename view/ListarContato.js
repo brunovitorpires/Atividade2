@@ -10,12 +10,16 @@ import {
   Spacer,
   Center,
   NativeBaseProvider,
+  Button,
 } from "native-base"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 
 export const ListarContato = () => {
+    const navigation = useNavigation(); 
+
   const data = [
     {
       id: "01",
@@ -103,7 +107,9 @@ export const ListarContato = () => {
         )}
         keyExtractor={(item) => item.id}
       />
+            <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('CadastroContato')}>Adicionar</Button>
     </Box>
+   
   )
 }
 

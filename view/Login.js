@@ -46,7 +46,7 @@ export const Login = () => {
             Sua senha deve conter 6 caracteres.
           </FormControl.HelperText>
           <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('ListarContato')}>LOGIN</Button>
-          <Button colorScheme="danger" marginTop ="5px">CADASTRE-SE</Button>
+          <Button colorScheme="danger" marginTop ="5px" onPress={() => navigation.navigate('CadastroUser')}>CADASTRE-SE</Button>
           <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
             Senha incorreta.
           </FormControl.ErrorMessage>
