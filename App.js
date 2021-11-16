@@ -6,9 +6,12 @@ import ListarContato from './view/ListarContato';
 import CadastroUser from './view/CadastroUser';
 import CadastroContato from './view/CadastroContato';
 
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
