@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {
   Box,
   FlatList,
@@ -15,33 +15,30 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 
 export const ListarContato = () => {
     const navigation = useNavigation(); 
 
-  const data = [
-    {
-      id: "01",
-      fullName: "Contato 01",
-      recentText: "XX XXXXXXXXX",
-      avatarUrl:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    },
-    {
-      id: "02",
-      fullName: "Contato 02",
-      recentText: "XX XXXXXXXXX",
-      avatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU",
-    },
-    {
-      id: "03",
-      fullName: "Contato 03",
-      recentText: "XX XXXXXXXXX",
-      avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg",
-    },
-  ]
+    const [dados,setDados] = useState([]);
+
+    useEffect (()=> {
+
+      function resgatarDados(){
+        axios('http://professornilson.com/testeservico/clientes')
+        .then(function (response) {
+          setDados(response.data);
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+  });
+      }
+      resgatarDados();
+
+    },[])
+
   return (
     <Box
       w={{
@@ -53,7 +50,7 @@ export const ListarContato = () => {
         Contatos
       </Heading>
       <FlatList
-        data={data}
+        data={dados}
         renderItem={({ item }) => (
           <Box
             borderBottomWidth="1"
@@ -80,7 +77,7 @@ export const ListarContato = () => {
                   color="coolGray.800"
                   bold
                 >
-                  {item.fullName}
+                  {item.nome}
                 </Text>
                 <Text
                   color="coolGray.600"
@@ -88,7 +85,7 @@ export const ListarContato = () => {
                     color: "warmGray.200",
                   }}
                 >
-                  {item.recentText}
+                  {item.cpf}
                 </Text>
               </VStack>
               <Spacer />
@@ -100,7 +97,7 @@ export const ListarContato = () => {
                 color="coolGray.800"
                 alignSelf="flex-start"
               >
-                {item.timeStamp}
+                {item.email}
               </Text>
             </HStack>
           </Box>
