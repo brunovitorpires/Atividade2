@@ -11,6 +11,8 @@ import {
   Center,
   NativeBaseProvider,
   Button,
+  ScrollView,
+  View,
 } from "native-base"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

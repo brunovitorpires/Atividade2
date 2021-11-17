@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect}from "react"
 import {
   FormControl,
   Input,
@@ -14,9 +14,34 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 export const AlterarCadastro = () => {
     const navigation = useNavigation(); 
+
+    function alterarDados(){
+      axios.put("http://professornilson.com/testeservico/clientes/'+getId'", {
+      nome: getNome,
+      telefone: getTelefone,
+      cpf: getCpf
+      }).then(function (response) {
+      console.log(response);
+      }).catch(function (error) {
+      console.log(error);
+      
+      });
+      
+      }
+
+      function excluirDados(){
+        axios.delete("http://professornilson.com/testeservico/clientes/'+getId'")
+        .then(function (response) {
+        console.log(response);
+        }).catch(function (error) {
+        console.log(error);
+        });
+        }
+
     return (
     <Box
       w={{
@@ -32,8 +57,8 @@ export const AlterarCadastro = () => {
           <Input type="email" placeholder="" />
           <FormControl.Label>Telefone</FormControl.Label>
           <Input type="text" placeholder="" />
-          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('ListarContato')}>Alterar</Button>
-          <Button colorScheme="danger" marginTop ="5px" onPress={() => navigation.navigate('ListarContato')}>Excluir</Button>
+          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => alterarDados()}>Alterar</Button>
+          <Button colorScheme="danger" marginTop ="5px" onPress={() => excluirDados}>Excluir</Button>
         </Stack>
       </FormControl>
     </Box>
