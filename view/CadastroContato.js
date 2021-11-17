@@ -19,19 +19,25 @@ import axios from 'axios';
 export const CadastroContato = () => {
     const navigation = useNavigation(); 
 
+    const [dados, setDados] = useState([]);
+
+    useEffect (()=>{
+
       function inserirDados(){
         axios.post('http://professornilson.com/testeservico/clientes', {
         nome: getNome,
         telefone: getTelefone,
         cpf: getCpf
         }).then(function (response) {
+          setDados(response.data)
         console.log(response);
         }).catch(function (error) {
         console.log(error);
         
         });
-        
         }
+        inserirDados()
+      })
 
     return (
     <Box
@@ -48,7 +54,7 @@ export const CadastroContato = () => {
           <Input type="email" placeholder="" />
           <FormControl.Label>Telefone</FormControl.Label>
           <Input type="text" placeholder="" />
-          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => inserirDados}>Salvar</Button>
+          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => inserirDados()}>Salvar</Button>
         </Stack>
       </FormControl>
     </Box>
