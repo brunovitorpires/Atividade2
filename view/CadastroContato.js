@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {
   FormControl,
   Input,
@@ -14,9 +14,25 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 export const CadastroContato = () => {
     const navigation = useNavigation(); 
+
+      function inserirDados(){
+        axios.post('http://professornilson.com/testeservico/clientes', {
+        nome: getNome,
+        telefone: getTelefone,
+        cpf: getCpf
+        }).then(function (response) {
+        console.log(response);
+        }).catch(function (error) {
+        console.log(error);
+        
+        });
+        
+        }
+
     return (
     <Box
       w={{
@@ -32,7 +48,7 @@ export const CadastroContato = () => {
           <Input type="email" placeholder="" />
           <FormControl.Label>Telefone</FormControl.Label>
           <Input type="text" placeholder="" />
-          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => navigation.navigate('ListarContato')}>Salvar</Button>
+          <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => inserirDados}>Salvar</Button>
         </Stack>
       </FormControl>
     </Box>
