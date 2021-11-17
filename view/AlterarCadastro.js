@@ -19,19 +19,22 @@ import axios from 'axios';
 export const AlterarCadastro = () => {
     const navigation = useNavigation(); 
 
-    function alterarDados(){
-      axios.put("http://professornilson.com/testeservico/clientes/'+getId'", {
-      nome: getNome,
-      telefone: getTelefone,
-      cpf: getCpf
-      }).then(function (response) {
-      console.log(response);
-      }).catch(function (error) {
-      console.log(error);
-      
-      });
-      
-      }
+    const [dados, setDados] = useState([]);
+    useEffect (()=>{
+
+      function alterarDados(){
+        axios.put("http://professornilson.com/testeservico/clientes/'+getId'", {
+        nome: getNome,
+        telefone: getTelefone,
+        cpf: getCpf
+        }).then(function (response) {
+          setDados(response.data)
+        console.log(response);
+        }).catch(function (error) {
+        console.log(error);
+        });
+        }
+        alterarDados()
 
       function excluirDados(){
         axios.delete("http://professornilson.com/testeservico/clientes/'+getId'")
@@ -41,6 +44,9 @@ export const AlterarCadastro = () => {
         console.log(error);
         });
         }
+        excluirDados()
+
+    },[])
 
     return (
     <Box
@@ -58,7 +64,7 @@ export const AlterarCadastro = () => {
           <FormControl.Label>Telefone</FormControl.Label>
           <Input type="text" placeholder="" />
           <Button size="sm" variant="subtle" marginTop ="5px" onPress={() => alterarDados()}>Alterar</Button>
-          <Button colorScheme="danger" marginTop ="5px" onPress={() => excluirDados}>Excluir</Button>
+          <Button colorScheme="danger" marginTop ="5px" onPress={() => excluirDados()}>Excluir</Button>
         </Stack>
       </FormControl>
     </Box>
